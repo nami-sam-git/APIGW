@@ -1,0 +1,7 @@
+  LksEcrRepo:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: lks-ecr-deri-new
+      ImageTagMutability: MUTABLE
+      EncryptionConfiguration:
+        EncryptionType: AES256

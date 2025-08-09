@@ -1,0 +1,22 @@
+  Type: AWS::EFS::FileSystem
+  Properties:
+
+  
+    AvailabilityZoneName: String
+    BackupPolicy: 
+      BackupPolicy
+    BypassPolicyLockoutSafetyCheck: Boolean
+    Encrypted: Boolean
+    FileSystemPolicy: Json
+    FileSystemProtection: 
+      FileSystemProtection
+    FileSystemTags: 
+      - ElasticFileSystemTag
+    KmsKeyId: String
+    LifecyclePolicies: 
+      - LifecyclePolicy
+    PerformanceMode: String
+    ProvisionedThroughputInMibps: Number
+    ReplicationConfiguration: 
+      ReplicationConfiguration
+    ThroughputMode: String

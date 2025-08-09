@@ -1,0 +1,20 @@
+  NatInstance:
+     Type: 'AWS::EC2::Instance'
+     Properties: 
+        ImageId: ami-0015c0130d6cc5da7
+        InstanceType: t2.micro
+        SubnetId: !Ref PublicSubnet1
+        SecurityGroupIds:
+          - !Ref SGAllTraffic
+        UserData:
+          Fn::Base64: !Sub |
+             #!/bin/bash -xe
+             yum update -y
+             sudo yum install iptables-services -y
+             sudo systemctl enable iptables
+             sudo systemctl start iptables
+             echo "net.ipv4.ip_forward=1" >> /etc/sysctl.d/custom-ip-forwarding.conf
+             sudo sysctl -p /etc/sysctl.d/custom-ip-forwarding.conf
+             sudo /sbin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+             sudo /sbin/iptables -F FORWARD
+             sudo service iptables save
